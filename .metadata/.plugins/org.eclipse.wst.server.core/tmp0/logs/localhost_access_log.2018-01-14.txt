@@ -1,0 +1,7 @@
+127.0.0.1 - - [14/Jan/2018:17:26:53 -0600] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [14/Jan/2018:17:27:08 -0600] "GET /exercise-services/webapi/activities HTTP/1.1" 200 209
+0:0:0:0:0:0:0:1 - - [14/Jan/2018:17:27:08 -0600] "GET /favicon.ico HTTP/1.1" 404 973
+0:0:0:0:0:0:0:1 - - [14/Jan/2018:17:34:42 -0600] "GET /exercise-services/webapi/helloworldrestservice HTTP/1.1" 200 13
+0:0:0:0:0:0:0:1 - - [14/Jan/2018:17:36:28 -0600] "GET /exercise-services/webapi/myresource HTTP/1.1" 200 7
+127.0.0.1 - - [14/Jan/2018:19:15:47 -0600] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [14/Jan/2018:19:16:11 -0600] "GET /exercise-services/webapi/activities HTTP/1.1" 200 209

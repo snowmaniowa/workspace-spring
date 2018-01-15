@@ -1,0 +1,6 @@
+GitRepositoriesView.GitDirectories=C\:\\dev\\sandbox\\workspace-spring\\exercise-services\\snowmaniowa\\exercise-services\\.git;
+GitRepositoriesView.GitDirectories.relative=exercise-services\\snowmaniowa\\exercise-services\\.git;
+core_autoIgnoreDerivedResources=false
+core_defaultRepositoryDir=C\:\\dev\\sandbox\\workspace-spring\\exercise-services
+core_preferredMergeStrategy=jgit-default-mergeStrategy
+eclipse.preferences.version=1

@@ -1,0 +1,66 @@
+package com.pluralsight;
+
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+
+
+import com.pluralsight.model.Activity;
+import com.pluralsight.model.User;
+import com.pluralsight.repository.ActivityRepository;
+import com.pluralsight.repository.ActivityRepositoryStub;
+
+//service
+@Path("activities")	//http://localhost:8080/exercise-services/webapi/activities
+public class ActivityResource {
+
+	private ActivityRepository aRepository = new ActivityRepositoryStub();
+	
+	@GET
+	//@Produces(MediaType.APPLICATION_XML) 	//this produces xml output
+	//@Produces(MediaType.APPLICATION_JSON)	//this produces json output		
+											//Dependency --> jersey-media-moxy
+											//Jaxb converts DO to XML to JSON
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})	//Array of media types output in multiple formats
+	public List<Activity> getActivities(){
+		return aRepository.findAllActivities();
+	}
+	
+	@GET
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	@Path("{activityId}")	
+	//http:localhost:8080/exercise-activities/webapi/activities/12345
+	//Use @PathParam to grab URL parameters
+	public Activity getActivityById(@PathParam("activityId") String activityId){
+		return aRepository.findActivity(activityId);
+	}
+
+	@GET
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@Path("{activityId}/user")
+	//http://localhost:8080/exercise-services/webapi/activities/200/user
+	public User getActivityUser(@PathParam("activityId") String activityId){
+		return aRepository.findActivity(activityId).getUser();
+	}
+	
+	@POST
+	@Path("activity")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_ATOM_XML})
+	public Activity createActivityParams(MultivaluedMap<String, String> inputMap){
+		Activity activity = new Activity();
+		activity.setDuration(Integer.parseInt(inputMap.getFirst("duration")));		
+		activity.setDescription(inputMap.getFirst("description"));
+		
+		aRepository.create(activity);
+		return activity;
+	}
+	
+}
